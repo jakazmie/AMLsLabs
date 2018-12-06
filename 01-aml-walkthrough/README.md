@@ -86,19 +86,14 @@ activate <your env name>
 
 3. Install Azure ML Python SDK
 ```
-pip install --upgrade azureml-sdk[notebooks,automl]
+pip install --upgrade azureml-sdk[notebooks,automl,contrib]
 ```
 
-4. Configure AML widgets for Jupyter
-```
-jupyter nbextension install --py --user azureml.train.widgets
-jupyter nbextension enable --py --user azureml.train.widgets
-```
 
-5. Install TensorFlow
+4. Install TensorFlow. The labs require 1.10 version
 ```
-pip install --upgrade tensorflow
-# pip install --upgrade tensorflow-gpu
+pip install --upgrade tensorflow==1.10
+# pip install --upgrade tensorflow-gpu==1.10
 ```
 
 6. Clone this repo

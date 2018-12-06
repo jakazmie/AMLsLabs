@@ -8,16 +8,23 @@ You can use your workstation or Azure Data Science Virtual Machine as your lab e
 
 ### To set up Azure Data Science Virtual Machine
 
-1. Follow the below link to provision Data Science Virtual Machine for **Ubuntu** . 
-   - Create a new resource group for your VM
-   - Use **D4s_v3** or better as a VM type. Although, the labs can run on other configurations this is the minimum configuration we recommend. 
-   - Choose *username and password* as the authentication type. 
-   - Use the default values for all other parameters.
+1. Open Azure Cloud Shell (Bash)
 
- https://portal.azure.com/#create/microsoft-dsvm.linux-data-science-vm-ubuntulinuxdsvmubuntu
+2. Create `Resource Group` to host your virtual machine
+```
+az group create --name <YOUR-RESOURCE-GROUP-NAME> --location <YOUR-REGION>
+```
 
-2. When your VM is ready use Azure Portal Cloud Shell to update AML SDK and install and configure AML Widgets and other lab dependencies. This step is a temporary workaround.
-The next release of DSVM will include updated SDK, pre-installed AML Widgets.
+3. Create Azure Ubuntu Data Science VM
+```
+# create a Ubuntu DSVM in your resource group
+# note you need to be at least a contributor to the resource group in order to execute this command successfully
+# If you need to create a new resource group use: "az group create --name YOUR-RESOURCE-GROUP-NAME --location YOUR-REGION (For example: westus2)"
+az vm create --resource-group <YOUR-RESOURCE-GROUP-NAME> --name <YOUR-VM-NAME> --image microsoft-dsvm:linux-data-science-vm-ubuntu:linuxdsvmubuntu:latest --admin-username <YOUR-USERNAME> --admin-password <YOUR-PASSWORD>
+```
+
+4. When your VM is ready log into it an update AML SDK. This step is a temporary workaround.
+The next release of DSVM will include updated SDK.
 
 ```
 # Logon to your VM
@@ -28,27 +35,23 @@ sudo -i
 conda activate py36 
 
 # Update AML Python SDK
-pip install --upgrade azureml-sdk[notebooks,automl]
+pip install --upgrade azureml-sdk[notebooks,automl,contrib]
 
-# Install AML Jupyter Widgets
-jupyter nbextension install --py azureml.train.widgets
 
-exit
-
-# Enable the widgets for your account
-conda activate py36
-jupyter nbextension enable --py azureml.train.widgets
-
-# Install scikit-image
-conda install scikit-image
-
+```
+5. Install the workshop's dependencies and clone the labspython
+```
 # Install h5py
 conda install h5py
-```
-3. Clone the labs
-```
+
+# Install tensorflow 1.10
+# Azure DSVM has TensorFlow 1.12 pre-installed. AzureML Brainwave components which are used in the labs
+# require 1.10 so we need to downgrade the default installation
+pip install --upgrade tensorflow==1.10
+
+# Clone the labs under the notebooks folder
 cd notebooks
-git clone <repo ULR>
+git clone https://github.com/jakazmie/AMLsLabs.git
 exit
 ```
 

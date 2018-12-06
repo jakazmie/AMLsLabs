@@ -18,9 +18,12 @@ az group create --name <YOUR-RESOURCE-GROUP-NAME> --location <YOUR-REGION>
 3. Create Azure Ubuntu Data Science VM
 ```
 # create a Ubuntu DSVM in your resource group
-# note you need to be at least a contributor to the resource group in order to execute this command successfully
-# If you need to create a new resource group use: "az group create --name YOUR-RESOURCE-GROUP-NAME --location YOUR-REGION (For example: westus2)"
-az vm create --resource-group <YOUR-RESOURCE-GROUP-NAME> --name <YOUR-VM-NAME> --image microsoft-dsvm:linux-data-science-vm-ubuntu:linuxdsvmubuntu:latest --admin-username <YOUR-USERNAME> --admin-password <YOUR-PASSWORD>
+az vm create --resource-group <YOUR-RESOURCE-GROUP-NAME> \
+--name <YOUR-VM-NAME> \
+--size Standard_D4s_v3 \
+--image microsoft-dsvm:linux-data-science-vm-ubuntu:linuxdsvmubuntu:latest \
+--admin-username <YOUR-USERNAME> \
+--admin-password <YOUR-PASSWORD>
 ```
 
 3. Open Jupyter port on DSVM

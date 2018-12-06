@@ -49,21 +49,26 @@ ssh <your username>@<vm ip address>
 sudo -i
 conda activate py36 
 
+# Update AML Python SDK
+pip install --upgrade azureml-sdk[notebooks,automl,contrib]
+
+```
+6. Install dependencies.
+```
+# Install h5py
+conda install h5py
+
 # Install tensorflow 1.10
 # Azure DSVM has TensorFlow 1.12 pre-installed. AzureML Brainwave components which are used in the labs
 # require 1.10 so we need to downgrade the default installation
 pip install --upgrade tensorflow==1.10
 
-# Update AML Python SDK
-pip install --upgrade azureml-sdk[notebooks,automl,contrib]
+exit
+```
+
+# Clone the labs under the `notebooks` folder
 
 ```
-6. Install the workshop's dependencies and clone the labs.
-```
-# Install h5py
-conda install h5py
-
-# Clone the labs under the notebooks folder
 cd notebooks
 git clone https://github.com/jakazmie/AMLsLabs.git
 exit

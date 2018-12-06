@@ -39,7 +39,7 @@ pip install --upgrade azureml-sdk[notebooks,automl,contrib]
 
 
 ```
-5. Install the workshop's dependencies and clone the labspython
+5. Install the workshop's dependencies and clone the labs.
 ```
 # Install h5py
 conda install h5py

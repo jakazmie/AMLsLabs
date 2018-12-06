@@ -20,7 +20,7 @@ az group create --name <YOUR-RESOURCE-GROUP-NAME> --location <YOUR-REGION>
 # create a Ubuntu DSVM in your resource group
 az vm create --resource-group <YOUR-RESOURCE-GROUP-NAME> \
 --name <YOUR-VM-NAME> \
---size Standard_D4s_v3 \
+--size Standard_D8s_v3 \
 --image microsoft-dsvm:linux-data-science-vm-ubuntu:linuxdsvmubuntu:latest \
 --admin-username <YOUR-USERNAME> \
 --admin-password <YOUR-PASSWORD>

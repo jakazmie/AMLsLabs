@@ -23,7 +23,19 @@ az group create --name <YOUR-RESOURCE-GROUP-NAME> --location <YOUR-REGION>
 az vm create --resource-group <YOUR-RESOURCE-GROUP-NAME> --name <YOUR-VM-NAME> --image microsoft-dsvm:linux-data-science-vm-ubuntu:linuxdsvmubuntu:latest --admin-username <YOUR-USERNAME> --admin-password <YOUR-PASSWORD>
 ```
 
-4. When your VM is ready log into it an update AML SDK. This step is a temporary workaround.
+3. Open Jupyter port on DSVM
+```
+az network nsg rule create \
+--resource-group <YOUR-RESOURCE-GROUP-NAME> \
+--nsg-name <YOUR-VM-NAME>NSG \
+--name Jupyter \
+--protocol tcp \
+--priority 1010 \
+--destination-port-range 8000
+
+```
+
+5. When your VM is ready log into it an update AML SDK. This step is a temporary workaround.
 The next release of DSVM will include updated SDK.
 
 ```
@@ -39,7 +51,7 @@ pip install --upgrade azureml-sdk[notebooks,automl,contrib]
 
 
 ```
-5. Install the workshop's dependencies and clone the labs.
+6. Install the workshop's dependencies and clone the labs.
 ```
 # Install h5py
 conda install h5py
@@ -55,10 +67,10 @@ git clone https://github.com/jakazmie/AMLsLabs.git
 exit
 ```
 
-4. Use Chrome browser to connect to Jupyter Hub at `http://<your machine's IP address>:8000`. 
+7. Use Chrome browser to connect to Jupyter Hub at `http://<your machine's IP address>:8000`. 
 You may receive a warning that `Your connection is not private`. Ignore it and press on **ADVANCED** to proceed.
 
-5. Use your username and password to log in to Jupyter and navigate to the lab's folder. You are ready to start the labs
+8. Use your username and password to log in to Jupyter and navigate to the lab's folder. You are ready to start the labs
 
 
 **Important**. Make sure to set the kernel of each notebook in the lab to *Python 3.6 - AzureML*.

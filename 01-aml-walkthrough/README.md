@@ -39,7 +39,7 @@ az network nsg rule create \
 ```
 
 5. When your VM is ready log into it an update AML SDK. This step is a temporary workaround.
-The next release of DSVM will include updated SDK.
+The next release of DSVM will include updated SDK. 
 
 ```
 # Logon to your VM
@@ -49,20 +49,19 @@ ssh <your username>@<vm ip address>
 sudo -i
 conda activate py36 
 
+# Install tensorflow 1.10
+# Azure DSVM has TensorFlow 1.12 pre-installed. AzureML Brainwave components which are used in the labs
+# require 1.10 so we need to downgrade the default installation
+pip install --upgrade tensorflow==1.10
+
 # Update AML Python SDK
 pip install --upgrade azureml-sdk[notebooks,automl,contrib]
-
 
 ```
 6. Install the workshop's dependencies and clone the labs.
 ```
 # Install h5py
 conda install h5py
-
-# Install tensorflow 1.10
-# Azure DSVM has TensorFlow 1.12 pre-installed. AzureML Brainwave components which are used in the labs
-# require 1.10 so we need to downgrade the default installation
-pip install --upgrade tensorflow==1.10
 
 # Clone the labs under the notebooks folder
 cd notebooks
